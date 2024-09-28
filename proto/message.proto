@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package glaze_vs_grpc;
+
+message SensorsSnapshot
+{
+    repeated uint32 ids 	= 1 [packed=true];
+    repeated double values 	= 2 [packed=true];
+}
