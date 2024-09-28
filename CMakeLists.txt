@@ -12,7 +12,7 @@ list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/generators)
 find_package(glaze CONFIG REQUIRED)
 find_package(protobuf CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
-find_package(cppbenchmark CONFIG REQUIRED)
+find_package(nanobench CONFIG REQUIRED)
 
 set(TARGET glaze_vs_protobuf)
 
@@ -43,9 +43,9 @@ target_link_libraries(
     ${TARGET}
     PRIVATE
         spdlog::spdlog
-        protobuf::libprotobuf
+        protobuf::protobuf
         glaze::glaze
-        cppbenchmark::cppbenchmark
+        nanobench::nanobench
 )
 
 protobuf_generate(
