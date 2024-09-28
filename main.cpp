@@ -27,9 +27,9 @@ static auto fill_in_raw()
     return bg;
 }
 
-static auto fill_in_grpc()
+static auto fill_in_protobuf()
 {
-    glaze_vs_grpc::SensorsSnapshot bp;
+    glaze_vs_protobuf::SensorsSnapshot bp;
     for(auto i = 0; i < LIMIT; ++i)
     {
         bp.add_ids(i);
@@ -42,8 +42,8 @@ auto gz_obj = fill_in_raw();
 std::string gz_beve_serialized;
 std::string gz_json_serialized;
 
-auto grpc_obj = fill_in_grpc();
-std::vector<char> grpc_serialized(grpc_obj.ByteSizeLong(), 0);
+auto protobuf_obj = fill_in_protobuf();
+std::vector<char> grpc_serialized(protobuf_obj.ByteSizeLong(), 0);
 
 BENCHMARK("glaze_beve_serialize")
 {
@@ -65,15 +65,15 @@ BENCHMARK("glaze_json_deserialize")
     auto obj = glz::read_json<blob>(gz_json_serialized);
 }
 
-BENCHMARK("grpc_serialize")
+BENCHMARK("protobuf_serialize")
 {
-    size_t size = grpc_obj.ByteSizeLong();
-	grpc_obj.SerializeToArray(grpc_serialized.data(), size);
+    size_t size = protobuf_obj.ByteSizeLong();
+	protobuf_obj.SerializeToArray(grpc_serialized.data(), size);
 }
 
-BENCHMARK("grpc_deserialize")
+BENCHMARK("protobuf_deserialize")
 {
-    glaze_vs_grpc::SensorsSnapshot obj;
+    glaze_vs_protobuf::SensorsSnapshot obj;
     obj.ParseFromArray((void*)grpc_serialized.data(), grpc_serialized.size());
 }
 

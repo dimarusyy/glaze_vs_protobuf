@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package glaze_vs_grpc;
+package glaze_vs_protobuf;
 
 message SensorsSnapshot
 {
