@@ -1,5 +1,7 @@
+## Overview ##
 The project is used to compare serialization/deserialization performance of glaze and protobuf.
-Benchmark results :
+
+## Benchmark ##
 
 | relative |ns/uint64_t |uint64_t/s |    err% |     total | Serialize   
 |---------:|--------------------:|--------------------:|--------:|----------:|:----------  
